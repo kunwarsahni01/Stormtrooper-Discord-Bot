@@ -3,6 +3,8 @@
  const newUsers = [];
  const config = require("./config.json");
 
+
+
  client.on('ready', () => {
  	console.log('Hello World!');
  	client.user.setGame('Type !help for help', 'Online');
@@ -34,11 +36,6 @@
  	command = command.slice(config.prefix.length);
 
  	let args = message.content.split(" ").slice(1);
-
- 	if (command === "customize") {
- 		message.channel.sendMessage('Would you like to have a server welcome message? If so type yes');
- 	}
-
 
  	if (command === "add") {
  		let numArray = args.map(n => parseInt(n));
