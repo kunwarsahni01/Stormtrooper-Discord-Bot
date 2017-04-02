@@ -43,7 +43,7 @@ client.on('message', message => {
 
   if (command === "help"){
     message.channel.sendMessage('I have sent you a list of commands in your Direct Messages');
-    message.author.sendMessage('```To see a list of commands visit: https://kunwarsahni01.github.io/Stormtrooper-Discord-Bot/  Version: Mark 0.2, BETA BUILD```');
+    message.author.sendMessage('```To see a list of commands visit: https://kunwarsahni01.github.io/Stormtrooper-Discord-Bot/  Version: Mark 0.3, BETA BUILD```');
     message.author.sendMessage('```For further support please join: https://discord.gg/YucSE7t```')
   }
 
