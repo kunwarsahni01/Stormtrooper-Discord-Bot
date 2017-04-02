@@ -3,8 +3,6 @@
  const newUsers = [];
  const config = require("./config.json");
 
-
-
  client.on('ready', () => {
  	console.log('Hello World!');
  	client.user.setGame('Type !help for help', 'Online');
