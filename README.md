@@ -6,17 +6,15 @@
 <a href="http://nodejs.org"><img src="https://img.shields.io/badge/Node.js-6.10.1-blue.svg" alt="Node JS"></a>
 <a href="http://npmjs.com"><img src="https://img.shields.io/badge/npm-4.0.5-blue.svg" alt="npm"></a>
 <a><img src="https://img.shields.io/badge/Version-0.3-blue.svg" alt="Version"></a>
-<a><img src="https://img.shields.io/travis/USER/REPO.svg" alt=Build Status"></a>
 <a href="https://discord.gg/YucSE7t"><img src="https://discordapp.com/api/guilds/295651804669018113/widget.png" alt="Discord server"></a>
 </p>
 
+A multipurpose Discord bot with the planned ability for music, moderation, and game stats.
 
-A multipurpose Discord bot.
 This is a first for me, and any help at all is welcome.
-
 This bot is created using Node.js and Discord.js
 
-Commands:
+Current Commands:
 
 !ping: quick command to see if bot is running
 
