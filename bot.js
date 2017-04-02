@@ -2,7 +2,7 @@
  const client = new Discord.Client();
  const newUsers = [];
  const config = require ("./config.json");
- 
+
 client.on('ready', () => {
     console.log('Hello World!');
     client.user.setGame('Type !help for help', 'Online');
@@ -43,7 +43,8 @@ client.on('message', message => {
 
   if (command === "help"){
     message.channel.sendMessage('I have sent you a list of commands in your Direct Messages');
-    message.author.sendMessage('```Commands:!ping: quick command to see if bot is running, !avatar: command birngs up users profile picture, !webhook: test webhook functionality, !help: use command for list of commands, !say: text after this command will be repeated by the bot, !add: any numbers spaced out after this command, and many more coming soon. For furter support or any help please join: https://discord.gg/G9u4Ryv                                                                                                                                                                                                                 Version: Mark 0.2, BETA BUILD```');
+    message.author.sendMessage('```To see a list of commands visit: https://kunwarsahni01.github.io/Stormtrooper-Discord-Bot/  Version: Mark 0.2, BETA BUILD```');
+    message.author.sendMessage('```For further support please join: https://discord.gg/YucSE7t```')
   }
 
   if (command === "hello"){

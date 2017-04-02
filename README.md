@@ -7,12 +7,18 @@ This bot is created using Node.js and Discord.js
 ![alt tag](https://yorkaargh.files.wordpress.com/2016/09/discordjslogo.png?w=670)
 
 Commands:
-!ping: quick command to see if bot is running 
+
+!ping: quick command to see if bot is running
+
 !avatar: command birngs up users profile picture
+
 !webhook: test webhook functionality
+
 !help: use command for list of commands
+
 !say: text after this command will be repeated by the bot
-!add: any numbers spaced out after this command
+
+!add: any numbers spaced out after this command will be added
  
 
 For furter support or any help please join: https://discord.gg/G9u4Ryv         
