@@ -2,6 +2,7 @@
  const client = new Discord.Client();
  const newUsers = [];
  const config = require("./config.json");
+ const yt = require('ytdl-core');
 
  client.on('ready', () => {
  	console.log('Hello World!');
@@ -35,6 +36,46 @@
 
  	let args = message.content.split(" ").slice(1);
 
+ 	if (command === "setup") {
+ 		message.channel.sendMessage('Would you like to set a welcome message? If so type !yes')
+ 			.then(() => {
+ 				message.channel.awaitMessages(response => response.content === "!yes", {
+ 						max: 1,
+ 						time: 50000,
+ 						errors: ['time'],
+ 					})
+ 					.then((collected) => {
+ 						message.channel.sendMessage('Ok, what would you like to set the message as?');
+ 					})
+ 					.catch(() => {
+ 						message.channel.sendMessage('No Response!, Please try again.');
+ 					});
+ 			});
+ 	}
+
+ 	if (command === "play") {
+ 		const voiceChannel = message.member.voiceChannel;
+ 		if (!voiceChannel) {
+ 			return message.reply(`Please be in a voice channel first!`);
+ 		}
+ 		message.reply(`:musical_note: Now playing, Never gona give you up!`)
+ 		voiceChannel.join()
+ 			.then(connnection => {
+ 				let stream = yt("https://www.youtube.com/watch?v=dQw4w9WgXcQ", {
+ 					audioonly: true
+ 				});
+ 				const dispatcher = connnection.playStream(stream);
+ 				dispatcher.on('end', () => {
+ 					voiceChannel.leave();
+ 				});
+ 			});
+ 	}
+
+ 	if (command === "stop") {
+ 		const voiceChannel = message.member.voiceChannel;
+ 		voiceChannel.leave()
+ 	}
+
  	if (command === "add") {
  		let numArray = args.map(n => parseInt(n));
  		let total = numArray.reduce((p, c) => p + c);
@@ -46,7 +87,7 @@
  	}
 
  	if (command === "help") {
- 		message.channel.sendMessage('I have sent you a list of commands in your Direct Messages');
+ 		message.reply('I have sent you a list of commands in your Direct Messages');
  		message.author.sendMessage('```To see a list of commands visit:```https://kunwarsahni01.github.io/Stormtrooper-Discord-Bot/ ```Version: Mark 0.3, BETA BUILD```');
  		message.author.sendMessage('```For further support please join: https://discord.gg/YucSE7t```')
  	}
@@ -65,6 +106,14 @@
 
  	if (command === "webhook") {
  		message.channel.sendMessage(hook.sendMessage('Webhooks Work!'))
+ 	}
+
+ 	if (command === "purge") {
+ 		let messagecount = parseInt(params[0]);
+ 		message.channel.fetchMessages({
+ 				limit: messagecount
+ 			})
+ 			.then(messages => message.channel.bulkDelete(messages));
  	}
  });
 
