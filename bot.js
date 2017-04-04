@@ -4,6 +4,8 @@
  const config = require("./config.json");
  const yt = require('ytdl-core');
 
+ var ServerMessage = false;
+
  client.on('ready', () => {
  	console.log('Hello World!');
  	client.user.setGame('Type !help for help', 'Online');
@@ -15,13 +17,17 @@
  hook.sendMessage('I am now alive!');
 
  client.on("guildMemberRemove", member => {
- 	let guild = member.guild;
- 	guild.defaultChannel.sendMessage(member.user + " Left!");
+ 	if (ServerMessage) {
+ 		let guild = member.guild;
+ 		guild.defaultChannel.sendMessage(member.user + " Left!");
+ 	}
  });
 
  client.on("guildMemberAdd", member => {
- 	let guild = member.guild;
- 	guild.defaultChannel.sendMessage("Welcome! " + member.user);
+ 	if (ServerMessage) {
+ 		let guild = member.guild;
+ 		guild.defaultChannel.sendMessage("Welcome! " + member.user);
+ 	}
  });
 
  client.on("guildCreate", guild => {
@@ -33,7 +39,6 @@
  	if (!message.content.startsWith(config.prefix)) return;
  	let command = message.content.split(" ")[0];
  	command = command.slice(config.prefix.length);
-
  	let args = message.content.split(" ").slice(1);
 
  	if (command === "setup") {
@@ -45,6 +50,7 @@
  						errors: ['time'],
  					})
  					.then((collected) => {
+ 						ServerMessage = true;
  						message.channel.sendMessage('Ok, what would you like to set the message as?');
  					})
  					.catch(() => {
@@ -58,10 +64,10 @@
  		if (!voiceChannel) {
  			return message.reply(`Please be in a voice channel first!`);
  		}
- 		message.reply(`:musical_note: Now playing, Never gona give you up!`)
+ 		message.reply(`:musical_note: Now playing your music selection.`)
  		voiceChannel.join()
  			.then(connnection => {
- 				let stream = yt("https://www.youtube.com/watch?v=dQw4w9WgXcQ", {
+ 				let stream = yt(args.join(" "), {
  					audioonly: true
  				});
  				const dispatcher = connnection.playStream(stream);
@@ -108,13 +114,6 @@
  		message.channel.sendMessage(hook.sendMessage('Webhooks Work!'))
  	}
 
- 	if (command === "purge") {
- 		let messagecount = parseInt(params[0]);
- 		message.channel.fetchMessages({
- 				limit: messagecount
- 			})
- 			.then(messages => message.channel.bulkDelete(messages));
- 	}
  });
 
  client.login(config.token);
