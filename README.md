@@ -28,6 +28,8 @@ Current Commands:
 
 !add: any numbers spaced out after this command will be added
 
+!play: any youtube url after this command will be played in a voice channel
+
 
 For furter support or any help please join:
 <a href="https://discord.gg/YucSE7t"><img src="https://discordapp.com/api/guilds/295651804669018113/widget.png" alt="Discord server"></a> 
